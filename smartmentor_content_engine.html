@@ -8,524 +8,135 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #080c10;
-  --bg2: #0f1419;
-  --bg3: #161d26;
-  --bg4: #1e2730;
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --text: #f0f2f5;
-  --text2: #8a95a3;
-  --text3: #4d5a68;
-  --accent: #1a73e8;
-  --accent-dim: rgba(26,115,232,0.15);
-  --accent-border: rgba(26,115,232,0.4);
-  --green: #10b981;
-  --green-dim: rgba(16,185,129,0.12);
-  --amber: #f59e0b;
-  --amber-dim: rgba(245,158,11,0.12);
-  --red: #ef4444;
-  --red-dim: rgba(239,68,68,0.1);
-  --purple: #8b5cf6;
-  --purple-dim: rgba(139,92,246,0.12);
-  --coral: #f97316;
-  --coral-dim: rgba(249,115,22,0.12);
+  --bg: #080c10; --bg2: #0f1419; --bg3: #161d26; --bg4: #1e2730;
+  --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+  --text: #f0f2f5; --text2: #8a95a3; --text3: #4d5a68;
+  --accent: #1a73e8; --accent-dim: rgba(26,115,232,0.15); --accent-border: rgba(26,115,232,0.4);
+  --green: #10b981; --green-dim: rgba(16,185,129,0.12);
+  --amber: #f59e0b; --amber-dim: rgba(245,158,11,0.12);
+  --red: #ef4444; --red-dim: rgba(239,68,68,0.1);
+  --purple: #8b5cf6; --purple-dim: rgba(139,92,246,0.12);
+  --coral: #f97316; --coral-dim: rgba(249,115,22,0.12);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 2px; }
-
-/* ── LAYOUT ── */
-.shell {
-  display: grid;
-  grid-template-columns: 260px 1fr 340px;
-  grid-template-rows: 56px 1fr;
-  min-height: 100vh;
-}
-.topbar {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.sidebar {
-  border-right: 1px solid var(--border);
-  padding: 24px 16px;
-  overflow-y: auto;
-  height: calc(100vh - 56px);
-  position: sticky;
-  top: 56px;
-}
-.main {
-  padding: 32px 28px;
-  overflow-y: auto;
-  height: calc(100vh - 56px);
-}
-.rightpanel {
-  border-left: 1px solid var(--border);
-  padding: 24px 16px;
-  overflow-y: auto;
-  height: calc(100vh - 56px);
-  position: sticky;
-  top: 56px;
-}
-
-/* ── TOPBAR ── */
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
+::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 2px; }
+.shell { display: grid; grid-template-columns: 260px 1fr 340px; grid-template-rows: 56px 1fr; min-height: 100vh; }
+.topbar { grid-column: 1/-1; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
+.sidebar { border-right: 1px solid var(--border); padding: 24px 16px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+.main { padding: 32px 28px; overflow-y: auto; height: calc(100vh - 56px); }
+.rightpanel { border-left: 1px solid var(--border); padding: 24px 16px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-mark {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 14px; font-weight: 900; color: #fff;
-}
+.logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; color: #fff; }
 .logo-text { font-size: 14px; font-weight: 500; color: var(--text); }
 .logo-sub { font-size: 11px; color: var(--text3); margin-left: 4px; }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
 .api-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
 .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); }
-.status-dot.live { background: var(--green); }
-.btn-sm {
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  border: 1px solid var(--border2);
-  background: var(--bg3);
-  color: var(--text2);
-  transition: all .15s;
-}
+.status-dot.live { background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.btn-sm { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer; border: 1px solid var(--border2); background: var(--bg3); color: var(--text2); transition: all .15s; }
 .btn-sm:hover { background: var(--bg4); color: var(--text); }
-
-/* ── SIDEBAR ── */
-.section-title {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 10px;
-  padding: 0 4px;
-}
-.pillar-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all .15s;
-  margin-bottom: 2px;
-  border: 1px solid transparent;
-}
+.section-title { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; padding: 0 4px; }
+.pillar-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: all .15s; margin-bottom: 2px; border: 1px solid transparent; }
 .pillar-item:hover { background: var(--bg3); }
-.pillar-item.active {
-  background: var(--accent-dim);
-  border-color: var(--accent-border);
-}
-.pillar-icon {
-  width: 28px; height: 28px;
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px;
-  flex-shrink: 0;
-}
+.pillar-item.active { background: var(--accent-dim); border-color: var(--accent-border); }
+.pillar-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
 .pillar-info { flex: 1; min-width: 0; }
 .pillar-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.3; }
 .pillar-sub { font-size: 10px; color: var(--text3); }
 .pillar-item.active .pillar-name { color: #60a5fa; }
-
 .sidebar-divider { height: 1px; background: var(--border); margin: 16px 0; }
-
-.history-item {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all .15s;
-}
+.history-item { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 8px; cursor: pointer; transition: all .15s; }
 .history-item:hover { border-color: var(--border2); background: var(--bg3); }
 .history-pillar { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
 .history-snippet { font-size: 11px; color: var(--text2); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .history-time { font-size: 10px; color: var(--text3); margin-top: 4px; }
 .empty-history { font-size: 12px; color: var(--text3); text-align: center; padding: 20px 0; }
-
-/* ── MAIN ── */
 .page-header { margin-bottom: 28px; }
 .page-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 6px; }
 .page-sub { font-size: 13px; color: var(--text2); }
-
-.card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 16px;
-}
-.card-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 14px;
-}
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.card-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
 .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill {
-  padding: 7px 14px;
-  border-radius: 100px;
-  border: 1px solid var(--border2);
-  background: var(--bg3);
-  font-size: 12px;
-  color: var(--text2);
-  cursor: pointer;
-  transition: all .15s;
-  font-family: 'DM Sans', sans-serif;
-  white-space: nowrap;
-}
+.pill { padding: 7px 14px; border-radius: 100px; border: 1px solid var(--border2); background: var(--bg3); font-size: 12px; color: var(--text2); cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
 .pill:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
-.pill.active {
-  background: var(--accent-dim);
-  border-color: var(--accent-border);
-  color: #60a5fa;
-  font-weight: 500;
-}
-
+.pill.active { background: var(--accent-dim); border-color: var(--accent-border); color: #60a5fa; font-weight: 500; }
 .input-wrap { position: relative; }
-.input-label { font-size: 11px; color: var(--text3); margin-bottom: 8px; display: block; }
-textarea, input[type=text], input[type=password] {
-  width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  padding: 12px 14px;
-  outline: none;
-  transition: border-color .15s;
-  line-height: 1.6;
-}
+textarea, input[type=text], input[type=password] { width: 100%; background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 12px 14px; outline: none; transition: border-color .15s; line-height: 1.6; }
 textarea { resize: vertical; min-height: 90px; }
 textarea:focus, input:focus { border-color: var(--accent-border); }
 textarea::placeholder, input::placeholder { color: var(--text3); }
 .char-hint { font-size: 10px; color: var(--text3); text-align: right; margin-top: 4px; }
-
-.generate-btn {
-  width: 100%;
-  padding: 14px;
-  background: var(--accent);
-  border: none;
-  border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-  cursor: pointer;
-  transition: all .15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 4px;
-}
+.generate-btn { width: 100%; padding: 14px; background: var(--accent); border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #fff; cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; }
 .generate-btn:hover { background: #1557b0; transform: translateY(-1px); }
 .generate-btn:active { transform: translateY(0); }
 .generate-btn:disabled { background: var(--bg4); color: var(--text3); cursor: not-allowed; transform: none; }
-
-.batch-btn {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text2);
-  cursor: pointer;
-  transition: all .15s;
-  margin-top: 8px;
-}
+.batch-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border2); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: var(--text2); cursor: pointer; transition: all .15s; margin-top: 8px; }
 .batch-btn:hover { background: var(--bg3); color: var(--text); }
-
-/* ── OUTPUT ── */
-.output-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  display: none;
-}
+.output-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; display: none; }
 .output-card.visible { display: block; }
-.output-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg3);
-}
+.output-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg3); }
 .output-title { font-size: 11px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; }
 .output-actions { display: flex; gap: 8px; }
-.act-btn {
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  border: 1px solid var(--border2);
-  background: var(--bg2);
-  color: var(--text2);
-  transition: all .15s;
-}
+.act-btn { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; border: 1px solid var(--border2); background: var(--bg2); color: var(--text2); transition: all .15s; }
 .act-btn:hover { background: var(--bg4); color: var(--text); }
 .act-btn.primary { background: var(--accent-dim); border-color: var(--accent-border); color: #60a5fa; }
 .act-btn.primary:hover { background: var(--accent); color: #fff; }
 .act-btn.copied { background: var(--green-dim); border-color: rgba(16,185,129,0.4); color: var(--green); }
-
 .output-body { padding: 20px; }
-.post-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 12.5px;
-  line-height: 1.9;
-  color: var(--text);
-  white-space: pre-wrap;
-  word-break: break-word;
-  min-height: 60px;
-}
-.cursor-blink::after {
-  content: '▋';
-  color: var(--accent);
-  animation: blink 1s infinite;
-}
+.post-text { font-family: 'DM Mono', monospace; font-size: 12.5px; line-height: 1.9; color: var(--text); white-space: pre-wrap; word-break: break-word; min-height: 60px; }
+.cursor-blink::after { content: '▋'; color: var(--accent); animation: blink 1s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-.meta-strip {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: 12px 16px;
-  border-top: 1px solid var(--border);
-  background: var(--bg3);
-}
+.meta-strip { display: flex; gap: 16px; flex-wrap: wrap; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--bg3); }
 .meta-item { font-size: 11px; color: var(--text3); }
 .meta-val { color: var(--text2); font-weight: 500; }
-
-.hint-strip {
-  padding: 10px 16px;
-  background: var(--green-dim);
-  border-top: 1px solid rgba(16,185,129,0.2);
-  font-size: 11px;
-  color: #6ee7b7;
-  line-height: 1.6;
-  display: none;
-}
+.hint-strip { padding: 10px 16px; background: var(--green-dim); border-top: 1px solid rgba(16,185,129,0.2); font-size: 11px; color: #6ee7b7; line-height: 1.6; display: none; }
 .hint-strip.visible { display: block; }
-
-.error-strip {
-  padding: 10px 16px;
-  background: var(--red-dim);
-  border-top: 1px solid rgba(239,68,68,0.2);
-  font-size: 11px;
-  color: #fca5a5;
-  display: none;
-}
+.error-strip { padding: 10px 16px; background: var(--red-dim); border-top: 1px solid rgba(239,68,68,0.2); font-size: 11px; color: #fca5a5; display: none; }
 .error-strip.visible { display: block; }
-
-/* ── BATCH OUTPUT ── */
-.batch-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  display: none;
-}
+.batch-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; display: none; }
 .batch-card.visible { display: block; }
-.batch-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: var(--bg3);
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.batch-pillar-badge {
-  font-size: 10px;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.05em;
-}
+.batch-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--bg3); border-bottom: 1px solid var(--border); cursor: pointer; }
+.batch-pillar-badge { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.05em; }
 .batch-body { padding: 16px; display: none; }
 .batch-body.open { display: block; }
-.batch-post-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  line-height: 1.85;
-  color: var(--text);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* ── RIGHT PANEL ── */
+.batch-post-text { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.85; color: var(--text); white-space: pre-wrap; word-break: break-word; }
 .schedule-grid { display: flex; flex-direction: column; gap: 6px; }
-.sched-row {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  padding: 8px 10px;
-  background: var(--bg3);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-}
+.sched-row { display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg3); border-radius: 8px; border: 1px solid var(--border); }
 .sched-day { font-size: 11px; font-weight: 500; color: var(--text2); min-width: 28px; }
 .sched-posts { flex: 1; }
 .sched-post { font-size: 10px; color: var(--text3); line-height: 1.5; }
 .sched-post + .sched-post { margin-top: 2px; }
 .post-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; margin-right: 5px; vertical-align: middle; }
-
-.tip-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 8px;
-}
+.tip-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 8px; }
 .tip-number { font-size: 22px; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--bg4); line-height: 1; margin-bottom: 4px; }
 .tip-text { font-size: 11px; color: var(--text2); line-height: 1.6; }
-
-/* ── API KEY MODAL ── */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
-}
-.modal {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 16px;
-  padding: 32px;
-  width: 420px;
-  max-width: 90vw;
-}
-.modal-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-.modal-sub { font-size: 13px; color: var(--text2); margin-bottom: 24px; line-height: 1.6; }
-.modal-link { color: #60a5fa; text-decoration: none; }
-.modal-link:hover { text-decoration: underline; }
-.modal-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--accent);
-  border: none;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 12px;
-  transition: background .15s;
-}
-.modal-btn:hover { background: #1557b0; }
-.modal-note { font-size: 11px; color: var(--text3); margin-top: 10px; text-align: center; }
-
-/* ── LOADING ── */
-.spinner {
-  width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.2);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
+.spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── TABS ── */
 .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-.tab {
-  padding: 10px 18px;
-  font-size: 13px;
-  color: var(--text3);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all .15s;
-  margin-bottom: -1px;
-}
+.tab { padding: 10px 18px; font-size: 13px; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; transition: all .15s; margin-bottom: -1px; }
 .tab:hover { color: var(--text2); }
 .tab.active { color: var(--text); border-bottom-color: var(--accent); }
-
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
-
-/* ── PILLAR COLORS ── */
 .p0 { background: var(--accent-dim); } .p0-dot { background: var(--accent); }
 .p1 { background: var(--green-dim); } .p1-dot { background: var(--green); }
 .p2 { background: var(--purple-dim); } .p2-dot { background: var(--purple); }
 .p3 { background: var(--amber-dim); } .p3-dot { background: var(--amber); }
 .p4 { background: var(--coral-dim); } .p4-dot { background: var(--coral); }
 .p5 { background: rgba(236,72,153,0.12); } .p5-dot { background: #ec4899; }
-
-.p0-text { color: #60a5fa; }
-.p1-text { color: #34d399; }
-.p2-text { color: #a78bfa; }
-.p3-text { color: #fbbf24; }
-.p4-text { color: #fb923c; }
-.p5-text { color: #f472b6; }
-
-/* page load animation */
+.p0-text { color: #60a5fa; } .p1-text { color: #34d399; } .p2-text { color: #a78bfa; }
+.p3-text { color: #fbbf24; } .p4-text { color: #fb923c; } .p5-text { color: #f472b6; }
 .shell { opacity: 0; animation: fadeIn .4s .1s forwards; }
 @keyframes fadeIn { to { opacity: 1; } }
-
-@media (max-width: 900px) {
-  .shell { grid-template-columns: 1fr; }
-  .sidebar, .rightpanel { display: none; }
-  .main { height: auto; }
-}
+@media (max-width: 900px) { .shell { grid-template-columns: 1fr; } .sidebar, .rightpanel { display: none; } .main { height: auto; } }
 </style>
 </head>
 <body>
 
-<!-- API KEY MODAL -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal">
-    <div class="modal-title">Connect your AI</div>
-    <p class="modal-sub">Enter your Anthropic API key to power the content engine. Your key is stored only in your browser — never sent anywhere except directly to Anthropic.<br><br>Get a key at <a class="modal-link" href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></p>
-    <label class="input-label">Anthropic API Key</label>
-    <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." autocomplete="off">
-    <button class="modal-btn" onclick="saveApiKey()">Save & Launch Engine</button>
-    <p class="modal-note">Key is saved to localStorage on this device only.</p>
-  </div>
-</div>
-
 <div class="shell">
-
-  <!-- TOP BAR -->
   <header class="topbar">
     <div class="logo">
       <div class="logo-mark">S</div>
@@ -534,84 +145,39 @@ textarea::placeholder, input::placeholder { color: var(--text3); }
     </div>
     <div class="topbar-right">
       <div class="api-status">
-        <div class="status-dot" id="statusDot"></div>
-        <span id="statusText">No API key</span>
+        <div class="status-dot live"></div>
+        <span>Connected via Supabase</span>
       </div>
-      <button class="btn-sm" onclick="showApiModal()">API Key</button>
       <button class="btn-sm" onclick="clearHistory()">Clear history</button>
     </div>
   </header>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <p class="section-title">Content Pillars</p>
     <div id="pillarNav">
-      <div class="pillar-item active" data-idx="0" onclick="selectPillar(0)">
-        <div class="pillar-icon p0">📊</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Hiring Intelligence</div>
-          <div class="pillar-sub">For CHROs & TA heads</div>
-        </div>
-      </div>
-      <div class="pillar-item" data-idx="1" onclick="selectPillar(1)">
-        <div class="pillar-icon p1">⭐</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Candidate Playbook</div>
-          <div class="pillar-sub">For job seekers</div>
-        </div>
-      </div>
-      <div class="pillar-item" data-idx="2" onclick="selectPillar(2)">
-        <div class="pillar-icon p2">📖</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Insight Story</div>
-          <div class="pillar-sub">Startup → career lesson</div>
-        </div>
-      </div>
-      <div class="pillar-item" data-idx="3" onclick="selectPillar(3)">
-        <div class="pillar-icon p3">✅</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Platform Proof</div>
-          <div class="pillar-sub">User wins & demos</div>
-        </div>
-      </div>
-      <div class="pillar-item" data-idx="4" onclick="selectPillar(4)">
-        <div class="pillar-icon p4">🎉</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Culture Moment</div>
-          <div class="pillar-sub">Events & trends</div>
-        </div>
-      </div>
-      <div class="pillar-item" data-idx="5" onclick="selectPillar(5)">
-        <div class="pillar-icon p5">💬</div>
-        <div class="pillar-info">
-          <div class="pillar-name">Poll / Question</div>
-          <div class="pillar-sub">Drive comments</div>
-        </div>
-      </div>
+      <div class="pillar-item active" onclick="selectPillar(0)"><div class="pillar-icon p0">📊</div><div class="pillar-info"><div class="pillar-name">Hiring Intelligence</div><div class="pillar-sub">For CHROs & TA heads</div></div></div>
+      <div class="pillar-item" onclick="selectPillar(1)"><div class="pillar-icon p1">⭐</div><div class="pillar-info"><div class="pillar-name">Candidate Playbook</div><div class="pillar-sub">For job seekers</div></div></div>
+      <div class="pillar-item" onclick="selectPillar(2)"><div class="pillar-icon p2">📖</div><div class="pillar-info"><div class="pillar-name">Insight Story</div><div class="pillar-sub">Startup → career lesson</div></div></div>
+      <div class="pillar-item" onclick="selectPillar(3)"><div class="pillar-icon p3">✅</div><div class="pillar-info"><div class="pillar-name">Platform Proof</div><div class="pillar-sub">User wins & demos</div></div></div>
+      <div class="pillar-item" onclick="selectPillar(4)"><div class="pillar-icon p4">🎉</div><div class="pillar-info"><div class="pillar-name">Culture Moment</div><div class="pillar-sub">Events & trends</div></div></div>
+      <div class="pillar-item" onclick="selectPillar(5)"><div class="pillar-icon p5">💬</div><div class="pillar-info"><div class="pillar-name">Poll / Question</div><div class="pillar-sub">Drive comments</div></div></div>
     </div>
-
     <div class="sidebar-divider"></div>
     <p class="section-title">Recent Posts</p>
-    <div id="historyList">
-      <p class="empty-history">No posts yet.<br>Generate your first one →</p>
-    </div>
+    <div id="historyList"><p class="empty-history">No posts yet.<br>Generate your first one →</p></div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <main class="main">
     <div class="page-header">
       <h1 class="page-title">Generate a post</h1>
       <p class="page-sub">Pick a pillar, paste a headline, hit generate. 30 seconds to post-ready.</p>
     </div>
-
     <div class="tabs">
       <div class="tab active" onclick="switchTab('single')">Single post</div>
       <div class="tab" onclick="switchTab('batch')">Week batch (14 posts)</div>
     </div>
 
-    <!-- SINGLE POST TAB -->
     <div class="tab-panel active" id="tab-single">
-
       <div class="card">
         <div class="card-label">Post format</div>
         <div class="pill-grid" id="formatPills">
@@ -623,7 +189,6 @@ textarea::placeholder, input::placeholder { color: var(--text3); }
           <div class="pill" data-val="Short Punchy (under 100 words)">Punchy & Short</div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-label">Tone</div>
         <div class="pill-grid" id="tonePills">
@@ -634,7 +199,6 @@ textarea::placeholder, input::placeholder { color: var(--text3); }
           <div class="pill" data-val="Urgent and alarming">Urgent</div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-label">Topic / headline / news (optional — leave blank to auto-generate)</div>
         <div class="input-wrap">
@@ -642,14 +206,10 @@ textarea::placeholder, input::placeholder { color: var(--text3); }
           <div class="char-hint" id="charHint">0 characters</div>
         </div>
       </div>
-
       <button class="generate-btn" id="genBtn" onclick="generateSingle()">
-        <span id="genBtnText">Generate post</span>
-        <span id="genBtnIcon">→</span>
+        <span id="genBtnText">Generate post</span><span id="genBtnIcon">→</span>
       </button>
       <button class="batch-btn" onclick="switchTab('batch')">Or generate a full week of posts →</button>
-
-      <!-- OUTPUT -->
       <div class="output-card" id="outputCard">
         <div class="output-topbar">
           <span class="output-title" id="outputPillarLabel">Hiring Intelligence · Hook + Insight + CTA</span>
@@ -659,112 +219,53 @@ textarea::placeholder, input::placeholder { color: var(--text3); }
             <button class="act-btn" onclick="saveToHistory()">Save</button>
           </div>
         </div>
-        <div class="output-body">
-          <div class="post-text" id="postOutput"></div>
-        </div>
+        <div class="output-body"><div class="post-text" id="postOutput"></div></div>
         <div class="meta-strip" id="metaStrip"></div>
         <div class="hint-strip" id="hintStrip"></div>
         <div class="error-strip" id="errorStrip"></div>
       </div>
     </div>
 
-    <!-- BATCH TAB -->
     <div class="tab-panel" id="tab-batch">
       <div class="card">
         <div class="card-label">Context for the week (optional)</div>
-        <textarea id="batchContext" placeholder="Any theme, campaign, or news this week you want woven into posts? Leave blank for evergreen content." style="min-height:70px;"></textarea>
-        <p style="font-size:11px;color:var(--text3);margin-top:8px;">This will generate 14 posts across all 6 pillars — your full week of content, ready to schedule.</p>
+        <textarea id="batchContext" placeholder="Any theme, campaign, or news this week? Leave blank for evergreen content." style="min-height:70px;"></textarea>
+        <p style="font-size:11px;color:var(--text3);margin-top:8px;">Generates 14 posts across all 6 pillars — your full week, ready to schedule.</p>
       </div>
       <button class="generate-btn" id="batchBtn" onclick="generateBatch()">
-        <span id="batchBtnText">Generate 14 posts for the week</span>
-        <span id="batchBtnIcon">→</span>
+        <span id="batchBtnText">Generate 14 posts for the week</span><span id="batchBtnIcon">→</span>
       </button>
       <div id="batchOutput" style="margin-top:20px;"></div>
     </div>
-
   </main>
 
-  <!-- RIGHT PANEL -->
   <aside class="rightpanel">
     <p class="section-title">Weekly schedule</p>
     <div class="schedule-grid">
-      <div class="sched-row">
-        <div class="sched-day">Mon</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p0-dot"></span>Hiring Intelligence · 7:30am</div>
-          <div class="sched-post"><span class="post-dot p1-dot"></span>Candidate Playbook · 12pm</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Tue</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p2-dot"></span>Insight Story · 7:30am</div>
-          <div class="sched-post"><span class="post-dot p5-dot"></span>Poll · 12pm</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Wed</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p3-dot"></span>Platform Proof · 7:30am</div>
-          <div class="sched-post"><span class="post-dot p0-dot"></span>Hiring Intelligence · 12pm</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Thu</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p1-dot"></span>Candidate Playbook · 7:30am</div>
-          <div class="sched-post"><span class="post-dot p2-dot"></span>Insight Story · 12pm</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Fri</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p3-dot"></span>Platform Proof · 7:30am</div>
-          <div class="sched-post"><span class="post-dot p5-dot"></span>Poll · 12pm</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Sat</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p4-dot"></span>Culture Moment · 9am</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-day">Sun</div>
-        <div class="sched-posts">
-          <div class="sched-post"><span class="post-dot p0-dot"></span>Newsletter tease · 6pm</div>
-        </div>
-      </div>
+      <div class="sched-row"><div class="sched-day">Mon</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p0-dot"></span>Hiring Intelligence · 7:30am</div><div class="sched-post"><span class="post-dot p1-dot"></span>Candidate Playbook · 12pm</div></div></div>
+      <div class="sched-row"><div class="sched-day">Tue</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p2-dot"></span>Insight Story · 7:30am</div><div class="sched-post"><span class="post-dot p5-dot"></span>Poll · 12pm</div></div></div>
+      <div class="sched-row"><div class="sched-day">Wed</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p3-dot"></span>Platform Proof · 7:30am</div><div class="sched-post"><span class="post-dot p0-dot"></span>Hiring Intelligence · 12pm</div></div></div>
+      <div class="sched-row"><div class="sched-day">Thu</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p1-dot"></span>Candidate Playbook · 7:30am</div><div class="sched-post"><span class="post-dot p2-dot"></span>Insight Story · 12pm</div></div></div>
+      <div class="sched-row"><div class="sched-day">Fri</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p3-dot"></span>Platform Proof · 7:30am</div><div class="sched-post"><span class="post-dot p5-dot"></span>Poll · 12pm</div></div></div>
+      <div class="sched-row"><div class="sched-day">Sat</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p4-dot"></span>Culture Moment · 9am</div></div></div>
+      <div class="sched-row"><div class="sched-day">Sun</div><div class="sched-posts"><div class="sched-post"><span class="post-dot p0-dot"></span>Newsletter tease · 6pm</div></div></div>
     </div>
-
     <div class="sidebar-divider"></div>
     <p class="section-title">Founder tips</p>
-
-    <div class="tip-card">
-      <div class="tip-number">01</div>
-      <div class="tip-text">Sunday night: run Batch Mode once. Schedule all 14 posts into Buffer or LinkedIn. Week done.</div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-number">02</div>
-      <div class="tip-text">Edit only the first line of each post. Your voice in the hook = authenticity. Rest can be AI.</div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-number">03</div>
-      <div class="tip-text">Any hiring news you see → paste it here immediately. Recency + your framing = algorithm fuel.</div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-number">04</div>
-      <div class="tip-text">Post at 7:30am IST. India LinkedIn engagement peaks 7–9am and 12–1pm on weekdays.</div>
-    </div>
-    <div class="tip-card">
-      <div class="tip-number">05</div>
-      <div class="tip-text">Reply to every comment within 2 hours. Comments in the first 30 min = 3× reach multiplier.</div>
-    </div>
+    <div class="tip-card"><div class="tip-number">01</div><div class="tip-text">Sunday night: run Batch Mode once. Schedule all 14 posts into Buffer or LinkedIn. Week done.</div></div>
+    <div class="tip-card"><div class="tip-number">02</div><div class="tip-text">Edit only the first line of each post. Your voice in the hook = authenticity. Rest can be AI.</div></div>
+    <div class="tip-card"><div class="tip-number">03</div><div class="tip-text">Any hiring news you see → paste it here immediately. Recency + your framing = algorithm fuel.</div></div>
+    <div class="tip-card"><div class="tip-number">04</div><div class="tip-text">Post at 7:30am IST. India LinkedIn engagement peaks 7–9am and 12–1pm on weekdays.</div></div>
+    <div class="tip-card"><div class="tip-number">05</div><div class="tip-text">Reply to every comment within 2 hours. Comments in the first 30 min = 3× reach multiplier.</div></div>
   </aside>
-
 </div>
 
 <script>
+// ─── ENDPOINT: reads from URL ?endpoint= param (passed by Lovable iframe)
+// Falls back to direct Supabase URL if opened standalone from GitHub Pages
+const EDGE_ENDPOINT = new URLSearchParams(window.location.search).get('endpoint')
+  || 'https://YOUR-PROJECT-ID.supabase.co/functions/v1/generate-post';
+
 const PILLARS = [
   { name: 'Hiring Intelligence', idx: 0, desc: 'Data-driven posts for CHROs and talent acquisition leaders. Newsjacking format. Bold stats. Strategic implications.', color: 'p0-text', badge: 'p0' },
   { name: 'Candidate Playbook', idx: 1, desc: 'Tactical career tips for job seekers. Save-worthy, shareable. Clear takeaways they can apply today.', color: 'p1-text', badge: 'p1' },
@@ -817,12 +318,9 @@ let selectedFormat = 'Hook + Insight + CTA';
 let selectedTone = 'Authoritative and data-led';
 let currentPostText = '';
 let history = JSON.parse(localStorage.getItem('sm_history') || '[]');
-let apiKey = localStorage.getItem('sm_apikey') || '';
 
 function init() {
-  updateApiStatus();
   renderHistory();
-  if (!apiKey) showApiModal();
   document.getElementById('topicInput').addEventListener('input', function() {
     document.getElementById('charHint').textContent = this.value.length + ' characters';
   });
@@ -842,28 +340,7 @@ function setupPillGroup(id, cb) {
 
 function selectPillar(idx) {
   selectedPillar = idx;
-  document.querySelectorAll('#pillarNav .pillar-item').forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
-  });
-}
-
-function showApiModal() { document.getElementById('apiModal').style.display = 'flex'; }
-function hideApiModal() { document.getElementById('apiModal').style.display = 'none'; }
-
-function saveApiKey() {
-  const k = document.getElementById('apiKeyInput').value.trim();
-  if (!k.startsWith('sk-')) { alert('Please enter a valid Anthropic API key (starts with sk-ant...)'); return; }
-  apiKey = k;
-  localStorage.setItem('sm_apikey', k);
-  updateApiStatus();
-  hideApiModal();
-}
-
-function updateApiStatus() {
-  const dot = document.getElementById('statusDot');
-  const txt = document.getElementById('statusText');
-  if (apiKey) { dot.classList.add('live'); txt.textContent = 'Connected'; }
-  else { dot.classList.remove('live'); txt.textContent = 'No API key'; }
+  document.querySelectorAll('#pillarNav .pillar-item').forEach((el, i) => el.classList.toggle('active', i === idx));
 }
 
 function switchTab(name) {
@@ -873,7 +350,6 @@ function switchTab(name) {
 }
 
 async function generateSingle() {
-  if (!apiKey) { showApiModal(); return; }
   const topic = document.getElementById('topicInput').value.trim();
   const pillar = PILLARS[selectedPillar];
   const btn = document.getElementById('genBtn');
@@ -906,10 +382,10 @@ Tone: ${selectedTone}
 ${topic ? 'Topic / Source: ' + topic : 'Auto-generate a compelling, timely post for this pillar.'}`;
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch(EDGE_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, stream: true, system: SYSTEM_PROMPT, messages: [{ role: 'user', content: userMsg }] })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYSTEM_PROMPT, userMessage: userMsg, maxTokens: 1000 })
     });
 
     if (!resp.ok) { const err = await resp.text(); throw new Error(err); }
@@ -943,7 +419,9 @@ ${topic ? 'Topic / Source: ' + topic : 'Auto-generate a compelling, timely post 
     postOutput.textContent = currentPostText;
 
     const meta = parts[1] || '';
-    const wm = meta.match(/WORDS:\s*(\d+)/); const hm = meta.match(/HOOK:\s*(.+)/); const am = meta.match(/AUDIENCE:\s*(.+)/);
+    const wm = meta.match(/WORDS:\s*(\d+)/);
+    const hm = meta.match(/HOOK:\s*(.+)/);
+    const am = meta.match(/AUDIENCE:\s*(.+)/);
     if (wm || hm || am) {
       metaStrip.innerHTML = [
         wm ? `<span class="meta-item">Words: <span class="meta-val">${wm[1]}</span></span>` : '',
@@ -951,14 +429,13 @@ ${topic ? 'Topic / Source: ' + topic : 'Auto-generate a compelling, timely post 
         am ? `<span class="meta-item">Audience: <span class="meta-val">${am[1].trim()}</span></span>` : '',
       ].join('');
     }
-
     hintStrip.textContent = SCHEDULE_HINTS[selectedPillar];
     hintStrip.classList.add('visible');
 
   } catch(e) {
     postOutput.classList.remove('cursor-blink');
     postOutput.textContent = '';
-    errorStrip.textContent = 'Error: ' + (e.message || 'Generation failed. Check your API key and try again.');
+    errorStrip.textContent = 'Error: ' + (e.message || 'Check that the Edge Function is deployed and ANTHROPIC_API_KEY secret is set in Supabase.');
     errorStrip.classList.add('visible');
   }
 
@@ -972,15 +449,18 @@ function copyPost() {
   navigator.clipboard.writeText(currentPostText).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    btn.classList.remove('primary');
+    btn.classList.add('copied'); btn.classList.remove('primary');
     setTimeout(() => { btn.textContent = 'Copy post'; btn.classList.remove('copied'); btn.classList.add('primary'); }, 2000);
   });
 }
 
 function saveToHistory() {
   if (!currentPostText) return;
-  const entry = { pillar: PILLARS[selectedPillar].name, pillarIdx: selectedPillar, text: currentPostText, time: new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) };
+  const entry = {
+    pillar: PILLARS[selectedPillar].name, pillarIdx: selectedPillar,
+    text: currentPostText,
+    time: new Date().toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
+  };
   history.unshift(entry);
   if (history.length > 20) history = history.slice(0, 20);
   localStorage.setItem('sm_history', JSON.stringify(history));
@@ -1036,7 +516,6 @@ const BATCH_PLAN = [
 ];
 
 async function generateBatch() {
-  if (!apiKey) { showApiModal(); return; }
   const ctx = document.getElementById('batchContext').value.trim();
   const btn = document.getElementById('batchBtn');
   const btnText = document.getElementById('batchBtnText');
@@ -1044,31 +523,29 @@ async function generateBatch() {
   const out = document.getElementById('batchOutput');
 
   btn.disabled = true;
-  btnText.textContent = 'Generating 14 posts (this takes ~90 seconds)';
+  btnText.textContent = 'Generating 14 posts (~90 seconds)';
   btnIcon.innerHTML = '<div class="spinner"></div>';
   out.innerHTML = '';
 
-  const cards = BATCH_PLAN.map((p, i) => {
+  BATCH_PLAN.forEach((p, i) => {
     const pillar = PILLARS[p.pillar];
     const card = document.createElement('div');
-    card.className = 'batch-card visible';
-    card.id = 'bc_' + i;
+    card.className = 'batch-card visible'; card.id = 'bc_' + i;
     card.innerHTML = `
       <div class="batch-header" onclick="toggleBatch(${i})">
         <div style="display:flex;align-items:center;gap:10px;">
           <span class="batch-pillar-badge ${pillar.badge} ${pillar.color}" style="padding:3px 10px;border-radius:100px;font-size:10px;font-weight:500;">${pillar.name}</span>
           <span style="font-size:11px;color:var(--text3);">${p.label} · ${p.format}</span>
         </div>
-        <span id="bc_status_${i}" style="font-size:11px;color:var(--text3);">Generating...</span>
+        <span id="bc_status_${i}" style="font-size:11px;color:var(--text3);">Queued...</span>
       </div>
       <div class="batch-body" id="bc_body_${i}">
-        <div class="batch-post-text" id="bc_text_${i}">...</div>
+        <div class="batch-post-text" id="bc_text_${i}"></div>
         <div style="margin-top:12px;display:flex;gap:8px;">
           <button class="act-btn primary" onclick="copyBatchPost(${i})">Copy</button>
         </div>
       </div>`;
     out.appendChild(card);
-    return card;
   });
 
   for (let i = 0; i < BATCH_PLAN.length; i++) {
@@ -1076,8 +553,9 @@ async function generateBatch() {
     const pillar = PILLARS[p.pillar];
     const textEl = document.getElementById('bc_text_' + i);
     const statusEl = document.getElementById('bc_status_' + i);
-    textEl.textContent = '';
     const body = document.getElementById('bc_body_' + i);
+    statusEl.textContent = 'Generating...';
+    textEl.textContent = '';
     body.classList.add('open');
 
     const msg = `Write a LinkedIn post for SmartMentor.ai:
@@ -1089,15 +567,18 @@ ${ctx ? 'Weekly theme: ' + ctx : 'Generate compelling evergreen content for this
 This is post ${i+1} of 14 in a weekly batch — make it distinctly different from a generic AI post.`;
 
     try {
-      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      const resp = await fetch(EDGE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 800, stream: true, system: SYSTEM_PROMPT, messages: [{ role: 'user', content: msg }] })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ system: SYSTEM_PROMPT, userMessage: msg, maxTokens: 800 })
       });
 
-      if (!resp.ok) throw new Error('API error');
-      const reader = resp.body.getReader(); const dec = new TextDecoder();
+      if (!resp.ok) throw new Error('Edge Function error: ' + await resp.text());
+
+      const reader = resp.body.getReader();
+      const dec = new TextDecoder();
       let buf = '', full = '';
+
       while (true) {
         const { done, value } = await reader.read(); if (done) break;
         buf += dec.decode(value, { stream: true });
@@ -1108,14 +589,16 @@ This is post ${i+1} of 14 in a weekly batch — make it distinctly different fro
           try { const parsed = JSON.parse(data); if (parsed.delta?.text) { full += parsed.delta.text; textEl.textContent = full.split('---META---')[0]; } } catch(e) {}
         }
       }
+
       const cleaned = full.split('---META---')[0].trim();
       textEl.textContent = cleaned;
       textEl.dataset.post = cleaned;
       statusEl.textContent = 'Done ✓';
       statusEl.style.color = 'var(--green)';
-      if (i > 0) { const prev = document.getElementById('bc_body_' + (i-1)); prev.classList.remove('open'); }
+      if (i > 0) { document.getElementById('bc_body_' + (i-1)).classList.remove('open'); }
+
     } catch(e) {
-      textEl.textContent = 'Error generating this post. Click Regenerate.';
+      textEl.textContent = 'Error: ' + e.message;
       statusEl.textContent = 'Error';
       statusEl.style.color = 'var(--red)';
     }
@@ -1128,10 +611,7 @@ This is post ${i+1} of 14 in a weekly batch — make it distinctly different fro
   if (last) last.classList.remove('open');
 }
 
-function toggleBatch(i) {
-  const body = document.getElementById('bc_body_' + i);
-  body.classList.toggle('open');
-}
+function toggleBatch(i) { document.getElementById('bc_body_' + i).classList.toggle('open'); }
 
 function copyBatchPost(i) {
   const el = document.getElementById('bc_text_' + i);
